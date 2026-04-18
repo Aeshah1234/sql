@@ -32,7 +32,7 @@ LIMIT 10;
 /* 1. Write a query that returns all customer purchases of product IDs 4 and 9. 
 Limit to 25 rows of output. */
 
-SELECT
+SELECT*
 FROM customer_purchases
 WHERE product_id IN (4,9)
 LIMIT 25; 
@@ -71,7 +71,7 @@ product_id,
 product_name, 
 CASE
 	WHEN product_qty_type = 'unit' THEN 'unit'
-	ELSE 'bluk'
+	ELSE 'bulk'
 END AS prod_qty_type_condensed
 FROM product; 
 
@@ -109,7 +109,7 @@ Limit to 24 rows of output. */
 SELECT* 
 FROM vendor 
 INNER JOIN vendor_booth_assignments
-	ON vendor.vendor_id - vendor_booth_assignments.vendor_id 
+	ON vendor.vendor_id = vendor_booth_assignments.vendor_id 
 ORDER BY market_date, vendor_name 
 LIMIT 24; 
 
