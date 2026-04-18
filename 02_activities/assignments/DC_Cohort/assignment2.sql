@@ -68,9 +68,15 @@ HINT: Do not use the previous visit dates filter. */
 SELECT
 	customer_id,
 	market_date, 
+	visit_number
+FROM (
+	SELECT 
+	customer_id, 
+	market_date, 
 	DENSE_RANK() OVER (PARTITION BY customer_id 
 	ORDER BY market_date DESC) AS visit_number
-FROM customer_purchases;
+FROM customer_purchases) AS ranked_visits
+	WHERE visit_number =1; 
 
 --END QUERY
 
@@ -87,7 +93,7 @@ SELECT
 	product_id,
 	market_date,
 	Count(*) OVER (PARTITION BY customer_id, product_id) AS purchase_count
-FROM customer_purchases WHERE market_date < '2022-04-20'; 
+FROM customer_purchases WHERE market_date < '2022-04-29'; 
 
 
 --END QUERY
@@ -142,7 +148,7 @@ with a UNION binding them. */
 WITH daily_sales AS (
 	SELECT
 	market_date
-	,SUM(cost_to_customer_per_qty) AS total_sales
+	,SUM(quantity * cost_to_customer_per_qty) AS total_sales
 	FROM customer_purchases 
 	GROUP BY market_date
 ), 
@@ -185,17 +191,24 @@ How many customers are there (y).
 Before your final group by you should have the product of those two queries (x*y).  */
 --QUERY 8
 
+WITH vendor_products AS (
 SELECT
     v.vendor_name,
     p.product_name,
-    SUM(vi.original_price * 5) AS total_product_revenue
+    (vi.original_price * 5) AS product_revenue
 FROM vendor_inventory vi
 JOIN vendor v ON vi.vendor_id = v.vendor_id
 JOIN product p ON vi.product_id = p.product_id
+)
+SELECT 
+	vp.vendor_name, 
+	vp.product_name, 
+	SUM(vp.product_revenue) AS total_product_revenue
+From vendor_products vp 
 CROSS JOIN customer c
 GROUP BY
-    v.vendor_name,
-    p.product_name;
+    vp.vendor_name,
+    vp.product_name;
 
 --END QUERY
 
