@@ -58,7 +58,8 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 ```
 Your answer...
 ```
-
+Type one: includes customer_id, and address information such as city, state, postal code, and date. This will overwrite with new information.  
+Type two: includes customer_id, and address information such as city, state, postal code, and date. It also includes a field to indicate whether this address is current (current_address: yes/no), start and end dates for address. This will maintain customer's history. 
 ***
 
 ## Section 2:
@@ -193,3 +194,8 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 ```
 Your thoughts...
 ```
+Boykis’s essay reveals an uncomfortable truth about artificial intelligence, which is that beneath the glossy and flashy surface of machine learning lies an enormous, largely invisible foundation of human labor, which becomes the most immediate issue if we consider exploitation. The workers who labeled ImageNet’s millions of images were paid fractional amounts for work that became the backbone of a multi-billion dollar industry. Their contribution is structurally erased, absorbed into an algorithm, and rebranded as machine intelligence, and monetized by others. This is no incidental; it reflects a deliberate design choice to teat human judgement as a cheap input rather than a skilled contribution deserving credit and fair compensation. 
+
+What is also problematic is that humans have made every labeling decision, their cultural assumptions and norms were encoded into the data at every layer. When ImageNet Roulette started tagging real people with offensive labels, it exposed what was always true, which is that these systems don’t transcend human prejudice, they inherit and amplify it. A very recent example is the Gaza Genocide, where AI tools were put under the test for objectivity and neutrality. Some of these major tools were actively designed to disengage from calling a genocide, a genocide, even though major international human rights organizations such as Amnesty and genocide scholars called it a genocide. Deploying such systems in high stakes context like policing, hiring, human rights, while marketing them as objective, is a form of institutional complicity. 
+
+What Boykis ultimately illustrated is that the ethical failures of artificial intelligence are not accidental. They follow directly from treating the human foundation of these systems as something to be hidden. Any serious efforts to build more ethical AI must begin by making that foundation visible, crediting the labor, the assumptions, and acknowledging that neutrality and objectivity are elusive terms. 
